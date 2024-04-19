@@ -2,7 +2,6 @@ import 'package:bella/cool/colorapp.dart';
 import 'package:bella/widget/homepagewidget/product_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../data_variable/list_product_item.dart';
 
 class HomeBody extends StatelessWidget{
@@ -11,12 +10,14 @@ class HomeBody extends StatelessWidget{
     return Scaffold(
       backgroundColor: ColorApp.bgScaffoldColor,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(height: 18),
-              Container(
+         padding: const EdgeInsets.all(16.0),
+
+         child: CustomScrollView(
+           physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverToBoxAdapter(child: SizedBox(height: 18)),
+            SliverToBoxAdapter(
+              child: Container(
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height*0.2,
                 decoration: BoxDecoration(
@@ -27,30 +28,33 @@ class HomeBody extends StatelessWidget{
                     )
                 ),
               ),
-              SizedBox(
+            ),
+            SliverToBoxAdapter(
+              child: SizedBox(
                 height: 24,
               ),
-
-              GridView.builder(
-                shrinkWrap: true,
-               physics: NeverScrollableScrollPhysics(),
-               itemBuilder: (context, index) =>   ProductItem(
-                  image: Products[index].image,
-                  nameProduct:  Products[index].nameProduct,
-                  price: Products[index].price,
-              ),
-              itemCount: Products.length,
+            ),
+            SliverGrid(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 8,
-               // crossAxisSpacing: 16,
-                childAspectRatio: 0.8,
-
-             ),
+                crossAxisCount: 2, // Number of items per row
+                crossAxisSpacing: 8, // Spacing between items horizontally
+                mainAxisSpacing: 8, // Spacing between rows vertically
+                childAspectRatio: 0.8, // Aspect ratio of items (square in this case)
               ),
-            ],
-          ),
-        ),
+              delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                  return ProductItem(
+                    image: Products[index].image,
+                    nameProduct: Products[index].nameProduct,
+                    price: Products[index].price,
+                  );
+                },
+                childCount: Products.length,
+              ),
+            ),
+          ],
+
+         ),
       ),
     );
   }

@@ -1,11 +1,11 @@
 import 'package:bella/cool/colorapp.dart';
 import 'package:bella/cool/iconapp.dart';
-import 'package:bella/ui/homepage.dart';
 import 'package:bella/widget/homepagewidget/homebody.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../cool/textapp.dart';
+import '../../ui/favourate_screen.dart';
+
 
 class HomeScreenWidget extends StatefulWidget{
   @override
@@ -16,7 +16,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
   int currentIndex=0;
   List<Widget> displayScreen=[
     HomeBody(),
-    Text("mohamed"),
+    FavouriteScreen(),
   ];
   @override
   Widget build(BuildContext context) {

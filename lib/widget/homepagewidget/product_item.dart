@@ -1,7 +1,9 @@
+import 'package:bella/data_variable/list_fav.dart';
 import 'package:flutter/material.dart';
 import '../../cool/colorapp.dart';
+import '../../data_variable/product_model.dart';
 
-class ProductItem extends StatelessWidget{
+class ProductItem extends StatefulWidget{
   final String? image;
   final  String? nameProduct;
    final String? price;
@@ -12,6 +14,13 @@ class ProductItem extends StatelessWidget{
   }
     );
 
+
+  @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
+  bool onPressed=false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,20 +47,43 @@ class ProductItem extends StatelessWidget{
                 child: CircleAvatar(
                   backgroundColor: ColorApp.bgCircleAvatarColor.withOpacity(0.1),
                   child: Center(
-                    child: Icon(
-                      Icons.favorite_border,
-                      color: Colors.orange,
+                    child: IconButton(
+                      onPressed: () {
+                          setState(() {
+                            onPressed=!onPressed;
+                            if(onPressed){
+                              favouriteItems.add(
+                              ProductModel(
+                              image: widget.image ?? "",
+                              nameProduct: widget.nameProduct ?? "",
+                              price: widget.price ?? "")
+                              );
+                              }
+                            else{
+                              favouriteItems.remove(
+                              ProductModel(
+                              image: widget.image ?? "",
+                              nameProduct: widget.nameProduct ?? "",
+                              price: widget.price ?? "")
+                              );
+                            }
+                            }
+                            );
+                      },
+                      icon: Icon(Icons.favorite,
+                        color:onPressed? Colors.red:Colors.orange),
+
                     ),
                   ),
                 ),
               ),
             ],
           ),
-          Image.asset("$image",
+          Image.asset("${widget.image}",
             width: 96,
             height: 96,
           ),
-          Text("$nameProduct",
+          Text("${widget.nameProduct}",
             style: TextStyle(
               fontSize:14,
               fontWeight: FontWeight.w800,
@@ -60,7 +92,7 @@ class ProductItem extends StatelessWidget{
             ),
           ),
           SizedBox(height: 10,),
-          Text("$price \$",
+          Text("${widget.price} \$",
             style: TextStyle(
               fontFamily: "Roboto-Regular",
               fontSize: 16,
@@ -73,5 +105,4 @@ class ProductItem extends StatelessWidget{
 
     );
   }
-
 }
