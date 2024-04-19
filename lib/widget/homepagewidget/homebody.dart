@@ -20,29 +20,34 @@ class HomeBody extends StatelessWidget{
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height*0.2,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  image: DecorationImage(
-                      image: AssetImage("assets/images/meal.png"),
-                     fit: BoxFit.contain
-                  )
+                    borderRadius: BorderRadius.circular(16),
+                    image: DecorationImage(
+                        image: AssetImage("assets/images/meal.png"),
+                        fit: BoxFit.contain
+                    )
                 ),
-              ), //Image in Top column
+              ),
               SizedBox(
                 height: 24,
               ),
 
-
-              ListView.separated(
+              GridView.builder(
                 shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) =>   ProductItem(
+               physics: NeverScrollableScrollPhysics(),
+               itemBuilder: (context, index) =>   ProductItem(
                   image: Products[index].image,
                   nameProduct:  Products[index].nameProduct,
                   price: Products[index].price,
               ),
               itemCount: Products.length,
-              separatorBuilder: (context, index) => SizedBox(height: 8,),
-              )
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 8,
+               // crossAxisSpacing: 16,
+                childAspectRatio: 0.8,
+
+             ),
+              ),
             ],
           ),
         ),
