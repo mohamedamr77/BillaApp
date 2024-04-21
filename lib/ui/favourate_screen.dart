@@ -11,9 +11,7 @@ class FavouriteScreen extends StatefulWidget{
 class _FavouriteScreenState extends State<FavouriteScreen> {
   @override
   Widget build(BuildContext context) {
-
-    List<ProductModel> favList = Products.where((foodModel) => foodModel.fav==true).toList() ;
-
+  List<ProductModel> favList =Products.where((favItem) =>favItem.fav==true ).toList();
     return ListView.builder(
       shrinkWrap: true,
       itemBuilder:(context, index) => Container(
@@ -44,7 +42,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                   ),
                 ),
                 SizedBox(height: 10,),
-                Text("${favList[index].price} \$",
+                Text("${favList[index].price}   \$",
                   style: TextStyle(
                     color: Color(0xffFF7A00),
                     fontSize: 16,

@@ -11,7 +11,6 @@ class HomeBody extends StatelessWidget{
       backgroundColor: ColorApp.bgScaffoldColor,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-
         child: CustomScrollView(
           physics: BouncingScrollPhysics(),
           slivers: [
@@ -34,7 +33,6 @@ class HomeBody extends StatelessWidget{
                 height: 24,
               ),
             ),
-
             SliverGrid(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, // Number of items per row

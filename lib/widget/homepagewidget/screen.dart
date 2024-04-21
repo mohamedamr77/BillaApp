@@ -3,6 +3,7 @@ import 'package:bella/cool/iconapp.dart';
 import 'package:bella/widget/homepagewidget/homebody.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'navbar.dart';
 import '../../cool/textapp.dart';
 import '../../ui/favourate_screen.dart';
 
@@ -41,7 +42,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
           ),
         ),
       ),
-       drawer: Drawer(),
+       drawer:NavBar(),
        bottomNavigationBar: BottomNavigationBar(
         onTap: (index){
           setState(() {
