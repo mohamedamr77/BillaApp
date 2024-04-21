@@ -10,10 +10,10 @@ class HomeBody extends StatelessWidget{
     return Scaffold(
       backgroundColor: ColorApp.bgScaffoldColor,
       body: Padding(
-         padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
 
-         child: CustomScrollView(
-           physics: BouncingScrollPhysics(),
+        child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
           slivers: [
             SliverToBoxAdapter(child: SizedBox(height: 18)),
             SliverToBoxAdapter(
@@ -34,19 +34,17 @@ class HomeBody extends StatelessWidget{
                 height: 24,
               ),
             ),
+
             SliverGrid(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2, // Number of items per row
                 crossAxisSpacing: 8, // Spacing between items horizontally
-                mainAxisSpacing: 8, // Spacing between rows vertically
                 childAspectRatio: 0.8, // Aspect ratio of items (square in this case)
               ),
               delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
                   return ProductItem(
-                    image: Products[index].image,
-                    nameProduct: Products[index].nameProduct,
-                    price: Products[index].price,
+                    index: index,
                   );
                 },
                 childCount: Products.length,
@@ -54,7 +52,7 @@ class HomeBody extends StatelessWidget{
             ),
           ],
 
-         ),
+        ),
       ),
     );
   }
